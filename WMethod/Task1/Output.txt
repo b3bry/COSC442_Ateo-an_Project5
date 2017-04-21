@@ -1,30 +1,34 @@
 Test Generation Using the W-method. V2.0. August 1, 2013
 
-Enter filename: Task1/binOddEven.txt
-FSM input from:  Task1/binOddEven.txt
-States: 3
-Edges 6
+Enter filename: Task1/BookExampleFSM.txt
+FSM input from:  Task1/BookExampleFSM.txt
+States: 5
+Edges 10
 Input alphabet:
+a
+b
+
+Output alphabet:
 0
 1
 
-Output alphabet:
-e
-o
-
 From 	 Input/Output 	 To
-1	 0/o		 1
-1	 1/e		 2
-2	 0/e		 3
-2	 1/o		 1
-3	 1/e		 3
-3	 0/e		 2
+1	 a/0		 1
+1	 b/1		 4
+2	 b/1		 5
+2	 a/0		 1
+3	 a/0		 5
+3	 b/1		 1
+4	 b/1		 4
+4	 a/1		 3
+5	 a/1		 2
+5	 b/1		 5
 
-Transition cover set (P). 7 entries.
-Empty 0 1 10 100 101 11 
+Transition cover set (P). 11 entries.
+Empty a b ba baa baaa baaaa baaab baab bab bb 
 
-W Set. 2 entries.
-0 1 
+W Set. 4 entries.
+a aa aaa baaa 
 
-Number of Test Cases :14
-Test cases: [0, 00, 01, 1, 10, 100, 1000, 1001, 101, 1010, 1011, 11, 110, 111]
+Number of Test Cases :29
+Test cases: [a, aa, aaa, aaaa, abaaa, ba, baa, baaa, baaaa, baaaaa, baaaaaa, baaaaaaa, baaaabaaa, baaaba, baaabaa, baaabaaa, baaabbaaa, baaba, baabaa, baabaaa, baabbaaa, baba, babaa, babaaa, babbaaa, bba, bbaa, bbaaa, bbbaaa]
