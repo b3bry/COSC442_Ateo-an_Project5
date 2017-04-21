@@ -74,7 +74,7 @@ public class Utilities{
   
   
   
-  public static void runFSM(State [] FSM, int stateID, String input, String separator){
+  public static String runFSM(State [] FSM, int stateID, String input, String separator){
     
     // input is a sequence of  symbols  from the input alphabet separated by string in separator.
     // StateId is the ID of the state to which input is to be applied.
@@ -85,7 +85,7 @@ public class Utilities{
     Utilities.debugFSMExecution("\nFSM execution begins. Input: "+input+" Initial state: "+stateID);
     if(FSM[stateID]==null){
       Utilities.printException("wAlgorithm", "runFSM", "Invalid start state. Execution aborted.");
-      return;
+      return"";
     }
     while(inputTokens.hasMoreTokens()){
       token=inputTokens.nextToken(); //Get next token from input.
@@ -103,5 +103,6 @@ public class Utilities{
     }
     Utilities.debugFSMExecution("\nFSM execution completed. Final state: "+currentState);
     Utilities.debugFSMExecution("Output pattern:"+outputPattern);
+    return outputPattern;
   }
 }// End of class Utilities.

@@ -352,6 +352,48 @@ public class WMethod{
 	   return input.replace("", separator).trim();
    }
    
+   private static void writeJUnit(Vector<String> junits){
+	   try{
+		    PrintWriter writer = new PrintWriter("Task3/JUnit.txt", "UTF-8");
+		    for(String t : junits){
+		    	writer.write(t);
+		    }
+		    writer.close();
+		} catch (IOException e) {
+		   System.out.println("Could not write JUnit");
+		}
+   }
+   
+   /**
+    * Assumes the JamesBond will have an instance to variable bond
+    * @param inout
+    * @return
+    */
+   private static Vector<String> makeJUnit(Vector<String[]> inout){
+	   int i = 1;
+	   String header = "@Test\npublic void testCase";
+	   String footer = "}\n";
+	   Vector<String> result = new Vector<String>();
+	   for(String[] pair : inout){
+		   StringBuilder builder = new StringBuilder();
+		   builder.append(header);
+		   builder.append(i+"(){");
+		   if(pair[1].contains("yes")){
+			   builder.append("assertTrue(bond.bondRegex(\"");
+			   builder.append(pair[0]);
+			   builder.append("\"));");
+		   }else{
+			   builder.append("assertFalse(bond.bondRegex(\"");
+			   builder.append(pair[0]);
+			   builder.append("\"));");
+		   }
+		   builder.append(footer);
+		   i++;
+		   result.add(builder.toString());
+	   }
+	   return result;
+   }
+   
    /* 
    Driver for the W-algorithm.
    */
@@ -390,11 +432,20 @@ public class WMethod{
      //
      // Example use of the Utilities.runFSM() method
      // Utilities.runFSM(FSM, 1, "a a b a b", " ");
+     Vector<String[]> inputOutput= new Vector<String[]>();
      for(String test : tests){
     	System.out.println("----------------");
-    	Utilities.runFSM(FSM, 1, addSeparator(test," "), " ");
+    	String outPattern = Utilities.runFSM(FSM, 1, addSeparator(test," "), " ");
     	System.out.println("----------------");
+    	inputOutput.add(new String[]{test,outPattern});
      }
+     Vector<String> junit = makeJUnit(inputOutput);
+     writeJUnit(junit);
+     
+     
+     
+     
+     
      
    }// End of main()
    
