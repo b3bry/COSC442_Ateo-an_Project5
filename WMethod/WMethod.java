@@ -348,6 +348,10 @@ public class WMethod{
      return testCases;
    }// End generateTests.
    
+   private static String addSeparator(String input, String separator){
+	   return input.replace("", separator).trim();
+   }
+   
    /* 
    Driver for the W-algorithm.
    */
@@ -386,6 +390,11 @@ public class WMethod{
      //
      // Example use of the Utilities.runFSM() method
      // Utilities.runFSM(FSM, 1, "a a b a b", " ");
+     for(String test : tests){
+    	System.out.println("----------------");
+    	Utilities.runFSM(FSM, 1, addSeparator(test," "), " ");
+    	System.out.println("----------------");
+     }
      
    }// End of main()
    
